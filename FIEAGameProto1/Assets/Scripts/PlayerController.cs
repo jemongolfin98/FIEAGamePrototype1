@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     private Rigidbody2D rb2d;
     public Text healthText;
-    public Text finalScoreText;
+    public GameObject enemyHealth;
     public Text gameOverText;
     public Text gameOverText1;
     public Text blasterCreationText;
@@ -18,13 +18,19 @@ public class PlayerController : MonoBehaviour
     public GameObject shield;
     public GameObject gameOverScreen;
     public GameObject gameActiveScreen;
+    public GameObject introTutorialScreen;
     public GameObject blasterTutorialScreen;
     public GameObject shieldTutorialScreen;
+    public GameObject enemyLock;
+    public GameObject enemyBoss;
+    public GameObject gameEnvironment;
 
     private int health;
     private int blasterPart;
     private int shieldPart;
     private bool gameOver;
+    private bool blasterActive;
+    private bool shieldActive;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +39,13 @@ public class PlayerController : MonoBehaviour
         health = 10;
         blasterPart = 0;
         shieldPart = 0;
+        introTutorialScreen.SetActive(true);
+        blasterActive = false;
+        shieldActive = false;
+        SetHealth();
+        BlasterCreation();
+        ShieldCreation();
+        Time.timeScale = 0f;
     }
 
     // Update is called once per frame
@@ -48,7 +61,24 @@ public class PlayerController : MonoBehaviour
             GameOver();
         }
 
+        if (Input.GetKey(KeyCode.X))
+        {
+            if (blasterActive == true && shieldActive == false)
+            {
+                blaster.SetActive(false);
+                blasterActive = false;
+                shield.SetActive(true);
+                shieldActive = true;
+            }
+            else if (blasterActive == false && shieldActive == true)
+            {
+                blaster.SetActive(true);
+                blasterActive = true;
+                shield.SetActive(false);
+                shieldActive = false;
+            }
 
+        }
     }
 
     private void FixedUpdate()
@@ -82,9 +112,46 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy1"))
         {
             health = health - 1;
+            SetHealth();
+        }
+
+        if (other.gameObject.CompareTag("Enemy2"))
+        {
+            health = health - 1;
+            SetHealth();
+        }
+
+        if (other.gameObject.CompareTag("Enemy3"))
+        {
+            health = health - 1;
+            SetHealth();
+        }
+
+        if (other.gameObject.CompareTag("EnemyBoss"))
+        {
+            health = health - 2;
+            SetHealth();
+        }
+
+        if (other.gameObject.CompareTag("EnemyBullet"))
+        {
+            health = health - 1;
+            SetHealth();
+        }
+
+        if (other.gameObject.CompareTag("EnemyBossBullet"))
+        {
+            health = health - 2;
+            SetHealth();
+        }
+
+        if (other.gameObject.CompareTag("HealthPickup"))
+        {
+            other.gameObject.SetActive(false);
+            health = health + 2;
             SetHealth();
         }
 
@@ -100,6 +167,13 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             shieldPart = shieldPart + 1;
             ShieldCreation();
+        }
+
+        if (other.gameObject.CompareTag("EnemyTrigger"))
+        {
+            enemyLock.SetActive(true);
+            enemyBoss.SetActive(true);
+            enemyHealth.SetActive(true);
         }
     }
 
@@ -121,19 +195,27 @@ public class PlayerController : MonoBehaviour
         {
             blasterCreationText.text = "Blaster Acquired";
             blaster.SetActive(true);
+            shield.SetActive(false);
             blasterTutorialScreen.SetActive(true);
+            blasterActive = true;
+            shieldActive = false;
+            Time.timeScale = 0f;
         }
     }
 
     public void ShieldCreation()
     {
-        shieldCreationText.text = "Blaster Parts: " + shieldPart + " Part(s)";
+        shieldCreationText.text = "Shield Parts: " + shieldPart + " Part(s)";
 
         if (shieldPart >= 4)
         {
-            shieldCreationText.text = "Blaster Acquired";
+            shieldCreationText.text = "Shield Acquired";
             shield.SetActive(true);
+            blaster.SetActive(false);
             shieldTutorialScreen.SetActive(true);
+            blasterActive = false;
+            shieldActive = true;
+            Time.timeScale = 0f;
         }
     }
 
@@ -155,6 +237,7 @@ public class PlayerController : MonoBehaviour
         jumpForce = 0;
         Time.timeScale = 0f;
         gameActiveScreen.SetActive(false);
+        gameEnvironment.SetActive(false);
         gameOverScreen.SetActive(true);
 
         if (health <= 0)

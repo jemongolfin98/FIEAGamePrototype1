@@ -9,6 +9,19 @@ TagManager:
   - Ground
   - Platform
   - Enemy
+  - WeaponBlaster
+  - WeaponShield
+  - EnemyBullet
+  - EnemyBossBullet
+  - HealthPickup
+  - ShieldPart
+  - BlasterPart
+  - EnemyBoss
+  - Enemy1
+  - Enemy2
+  - Enemy3
+  - EnemyTrigger
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
@@ -58,6 +71,12 @@ TagManager:
   - name: Player
     uniqueID: 1237651187
     locked: 0
+  - name: Weapon
+    uniqueID: 3255134305
+    locked: 0
   - name: Enemy
     uniqueID: 1104712813
+    locked: 0
+  - name: Bullet
+    uniqueID: 71665611
     locked: 0
