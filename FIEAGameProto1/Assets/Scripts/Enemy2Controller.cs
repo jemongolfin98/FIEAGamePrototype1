@@ -8,6 +8,7 @@ public class Enemy2Controller : MonoBehaviour
     private int enemy2health;
 
     public GameObject enemy2;
+    public GameObject enemy2BulletSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,9 @@ public class Enemy2Controller : MonoBehaviour
     {
         if (enemy2health <= 0)
         {
-            enemy2.gameObject.SetActive(false);
+            //enemy2.gameObject.SetActive(false);
+            //enemy2BulletSpawn.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

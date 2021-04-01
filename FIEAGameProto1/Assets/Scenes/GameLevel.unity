@@ -12845,7 +12845,7 @@ MonoBehaviour:
   shieldTutorialScreen: {fileID: 569174407}
   enemyLock: {fileID: 1140563790}
   enemyBoss: {fileID: 1502845986}
-  gameEnvironment: {fileID: 0}
+  gameEnvironment: {fileID: 1656270721}
 --- !u!50 &1847668155
 Rigidbody2D:
   serializedVersion: 4
@@ -13490,7 +13490,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.848541, y: -92}
+  m_AnchoredPosition: {x: 16.848541, y: -130}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1910686743
@@ -14173,8 +14173,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.7965994, y: 33.0957}
-  m_SizeDelta: {x: 513.2638, y: 135.6772}
+  m_AnchoredPosition: {x: 3.7707, y: -0.3898}
+  m_SizeDelta: {x: 532.3983, y: 202.6482}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1979258333
 MonoBehaviour:
@@ -14217,7 +14217,10 @@ MonoBehaviour:
     Use
     the Left and Right arrow keys to Move.
 
-    Use the Up arrow key to Jump.'
+    Use the Up arrow key to Jump.
+
+    Be
+    sure to collect the Blue and Green fractures as you go.'
 --- !u!222 &1979258334
 CanvasRenderer:
   m_ObjectHideFlags: 0

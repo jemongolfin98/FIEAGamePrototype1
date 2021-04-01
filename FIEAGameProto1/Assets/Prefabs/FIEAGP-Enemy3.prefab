@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy3: {fileID: 0}
+  enemy3BulletSpawn: {fileID: 4990149855872149336}
 --- !u!114 &2756360818035565866
 MonoBehaviour:
   m_ObjectHideFlags: 0
